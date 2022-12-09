@@ -1,0 +1,55 @@
+<main id="main" class="main">
+    <div class="pagetitle ">
+        <h1>Category</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item">Category</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section mt-5">
+        <div class="container">
+            <form action="/admin/category" method="post">
+                <h5>Add Category</h5>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control " placeholder="Category Name" name="category" required>
+                    </div>
+                    <div class="form-group col-md-6 ">
+                        <button type="submit" class="btn btn-primary btn-block" style="width: 150px;">Submit</button>
+                        {{!-- <a class="btn btn-primary  btn-block " style="width: 150px;" href="#">Submit</a> --}}
+                    </div>
+                </div>
+                <div class="mt-5">
+                    <h5>Categories</h5>
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each category}}
+                            <tr>
+                                <th scope="row">{{inc @index}}</th>
+                                <td>{{this.category}}</td>
+                                <td><a id="Edit-Category" onclick="editCATEGORY('{{this.category}}','{{this._id}}')"
+                                        class=".bg-primary">
+                                        <i class="bi bi-pencil-square ms-2"></i></a></td>
+                                <td><a onclick="deleteCategory('{{this._id}}','{{this.category}}')"
+                                        class=".bg-primary"><i class="bi bi-trash ms-3"></i></a></td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </section>
+
+</main><!-- End #main -->

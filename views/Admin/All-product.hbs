@@ -1,0 +1,59 @@
+<main id="main" class="main">
+  <div class="pagetitle ">
+    <h1>Products</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item">products</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section mt-5">
+    <div class="container">
+      <form>
+        <div class="container">
+          <div class="row">
+            <h5 class="fw-bold fs-2 mb-4"> Product List</h5>
+            <div class="col-12">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Brand</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each products}}
+                  <tr>
+                    <th scope="row" class="align-middle fw-b">{{inc @index}}</th>
+                    <td class="align-middle fw-b">{{this.Product-Name}}</td>
+                    <td class="align-middle fw-b"><img src="{{this.image.[0]}}" alt=""
+                        style="width: 50px;height: 50px;"></td>
+                    <td class="align-middle fw-b">{{this.Brand}}</td>
+                    <td class="align-middle fw-b">{{this.category}}</td>
+                    <td class="align-middle fw-b">{{this.Price}}</td>
+                    <td class="align-middle fw-b">{{this.Stock}}</td>
+                    <td class="align-middle "><a href="/admin/edit-product/{{this._id}}"><i
+                          class="bi bi-pencil-square ms-3"></i></a> </td>
+                    <td class="align-middle "><a onclick="deleteProduct('{{this._id}}')" class=".bg-primary"><i
+                          class="bi bi-trash ms-4 "></i></a></td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main><!-- End #main -->

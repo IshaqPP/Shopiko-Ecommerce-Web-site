@@ -1,0 +1,64 @@
+<main id="main" class="main">
+  <div class="pagetitle ">
+    <h1>Orders</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item">Order Details</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section mt-5">
+    <div class="container">
+      <form>
+        <div class="container">
+          <div class="row">
+            <h5 class="fw-bold fs-2 mb-4"> Order List</h5>
+            <div class="col-12">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Payment</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Option</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each orderItems}}
+                  <tr>
+                    <th scope="row" class="align-middle fw-b">{{inc @index}}</th>
+                    <td class="align-middle fw-b">{{this.deliveryDetails.fullname}}</td>
+                    <td class="align-middle fw-b">{{this.deliveryDetails.address}}</td>
+                    <td class="align-middle fw-b">{{this.displayDate}}</td>
+                    <td class="align-middle fw-b">{{this.product.Product-Name}}</td>
+                    <td class="align-middle fw-b"><img src="{{this.product.image.[0]}}" alt=""
+                        style="width: 50px;height: 50px;"></td>
+                    <td class="align-middle fw-b">{{this.quantity}}</td>
+                    <td class="align-middle fw-b">{{this.product.Price}}</td>
+                    <td class="align-middle fw-b">{{this.paymentMethod}}</td>
+                    <td class="align-middle fw-b">{{this.status}}</td>
+                    <td class="align-middle "><button class="btn btn-danger" type="submit" onclick="" id="Cancel"
+                        style="width: 100%;">Cancel</button>
+                    </td>
+                  </tr>
+                  {{/each}}
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main><!-- End #main -->

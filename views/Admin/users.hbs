@@ -1,0 +1,66 @@
+<main id="main" class="main">
+  <div class="pagetitle ">
+    <h1>Users</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item">Users</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">No</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each users}}
+              <tr>
+                <th scope="row">{{inc @index}}</th>
+                <td>{{this.username}}</td>
+                <td>{{this.Email}}</td>
+                <td>{{this.MobileNumber}}</td>
+                <td>
+                  {{#if this.status}}
+                  Active
+                  {{else}}
+                  Inactive
+                  {{/if}}
+                </td>
+                <td>
+                  {{#if this.status}}
+                  {{!-- <button class="btn btn-danger" onclick="blockUser('{{this._id}}')">
+                    Block</button> --}}
+                  {{!-- <a class="btn btn-danger btn-lg btn-block w-100 h-100" id="Block">Block</a> --}}
+                  <button class="btn btn-danger" type="submit" onclick="blockUser('{{this._id}}')" id="Block"
+                    style="width: 100%;">Block</button>
+                  {{else}}
+                  {{!-- <button class="btn btn-success" onclick="unblockUser('{{this._id}}')">
+                    Unblock</button> --}}
+                  {{!-- <a class="btn btn-danger btn-lg btn-block w-100 h-100" id="Unblock">Unblock</a> --}}
+                  <button class="btn btn-success" type="submit" onclick="blockUser('{{this._id}}')" id="Block"
+                    style="width: 100%;">Unblock</button>
+                  {{/if}}
+
+                </td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main><!-- End #main -->
