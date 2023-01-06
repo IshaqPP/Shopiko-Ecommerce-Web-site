@@ -322,7 +322,7 @@ router.post('/place-order', async (req, res) => {
   userHelpers.placeOrder(userAddress, products, totalPrice, req.body, req.session.user._id).then((orderId) => {
     if (req.body['paymentMethod'] === 'COD') {
       res.json({ codSuccess: true })
-    } else if (req.body['paymentMethod'] === 'ONLINE') {
+    } else if (req.body['paymentMethod'] === 'RAZORPAY') {
       userHelpers.generateRazorpay(orderId, totalPrice).then((response) => {
         res.json({ razorpay: true, response })
       })

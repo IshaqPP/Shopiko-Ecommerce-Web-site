@@ -334,7 +334,7 @@ module.exports = {
 
     //DELETE PENDING ORDERS
     deletePendingOrders: () => {
-        db.get().collection(collection.ORDERS_COLLECTION).deleteMany({ 'products.status': 'pending' })
+        db.get().collection(collection.ORDER_COLLECTION).deleteMany({ 'products.status': 'pending' })
     },
 
     //USER ORDERS

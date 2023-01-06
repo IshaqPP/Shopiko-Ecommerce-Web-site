@@ -348,7 +348,7 @@ module.exports={
                         date: {
                             $gte: startDate, $lte: endDate
                         },
-                        paymentMethod: 'ONLINE'
+                        paymentMethod: 'RAZORPAY'
                     },
                 },
                 {
@@ -360,7 +360,7 @@ module.exports={
                     }
                 }
             ]).toArray()
-            data.RazorpayTotal = RazorpayTotal?.[0]?.totalAmount
+            data.resolve = RazorpayTotal?.[0]?.totalAmount
             let totalAmount = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
                 {
                     $match: {
