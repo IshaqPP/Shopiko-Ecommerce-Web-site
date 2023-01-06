@@ -29,7 +29,7 @@ redirect = function (req, res, next) {
 };
 
 /* GET home page. */
-router.get('/', async(req, res, next)=> {
+router.get('/',redirect, async(req, res, next)=> {
   let user=req.session.user;
   console.log(user);
   let cartCount = 0
