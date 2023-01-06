@@ -335,8 +335,8 @@ router.post('/place-order', async (req, res) => {
           "payment_method": "paypal"
         },
         "redirect_urls": {
-          "return_url": "http://localhost:3000/success",
-          "cancel_url": "http://localhost:3000/place-order"
+          "return_url": "https://shopiko.online/success",
+          "cancel_url": "https://shopiko.online/place-order"
         },
         "transactions": [{
           "item_list": {
