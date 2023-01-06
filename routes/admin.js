@@ -225,7 +225,7 @@ router.delete('/delete-category',AdminMidleware.AdminFunActionCheck , (req, res)
 router.get('/orders',AdminMidleware.AdminFunActionCheck , (req, res) => {
   adminHelpers.getOrderDetails('placed').then((orderItems) => {
     console.log("orderItems -----------------------",orderItems);
-    res.render('admin/orders', { orderItems ,admin: true})
+    res.render('Admin/orders', { orderItems ,admin: true})
   })
 })
 
@@ -252,7 +252,7 @@ router.get('/sales-report',AdminMidleware.AdminFunActionCheck , async (req, res)
   console.log("deliveredOrders ****************** ",deliveredOrders);
   
   let amount = await adminHelpers.totalAmountOfdelivered()
-  res.render('admin/sales-report', { admin: true, deliveredOrders, amount })
+  res.render('Admin/sales-report', { admin: true, deliveredOrders, amount })
 
 })
 
@@ -277,7 +277,7 @@ router.get('/offer',AdminMidleware.AdminFunActionCheck , async (req, res) => {
   let productOffer = await productHelpers.getProductOffer()
   let categoryOffer = await productHelpers.getCategoryOffer()
   console.log("productOffer ==========",productOffer);
-  res.render('admin/offer', { admin: true, products, category, productOffer, categoryOffer })
+  res.render('Admin/offer', { admin: true, products, category, productOffer, categoryOffer })
 })
 
 //PRODUCT OFFER
@@ -317,7 +317,7 @@ router.post('/offer/delete-category-offer', (req, res) => {
 router.get('/coupon',AdminMidleware.AdminFunActionCheck , async (req, res) => {
   let coupon = await adminHelpers.getCoupon()
   coupon.expDate = coupon.expDate?.toDateString()
-  res.render('admin/coupon', { admin: true, coupon })
+  res.render('Admin/coupon', { admin: true, coupon })
 })
 
 //ADD COUPON
