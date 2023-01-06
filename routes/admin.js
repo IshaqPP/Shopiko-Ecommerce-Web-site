@@ -54,6 +54,7 @@ router.get('/adminLogin',AdminMidleware.AdminLoginCheck, function (req, res, nex
   res.render('Admin/admin-login',{not: true});
 });
 
+
 //USERS LISTING
 
 router.get('/users',AdminMidleware.AdminFunActionCheck ,function (req, res) {
@@ -79,7 +80,6 @@ router.get('/allProducts',AdminMidleware.AdminFunActionCheck , function (req, re
 });
 
 //ADD PRODUCT
-
 router.get('/addProduct',AdminMidleware.AdminFunActionCheck , async (req, res)=> {
   let category = await adminHelpers.getCategory()
   console.log(category,"category-------------------");
@@ -226,6 +226,114 @@ router.get('/orders',AdminMidleware.AdminFunActionCheck , (req, res) => {
   adminHelpers.getOrderDetails('placed').then((orderItems) => {
     console.log("orderItems -----------------------",orderItems);
     res.render('admin/orders', { orderItems ,admin: true})
+  })
+})
+
+router.post('/order-status', (req, res) => {
+  adminHelpers.changeOrderStatus(req.body.prodId, req.body.orderId, req.body.status).then(() => {
+    res.json({ status: true })
+  })
+})
+
+//SALES REPORT
+router.get('/sales-report',AdminMidleware.AdminFunActionCheck , async (req, res) => {
+  if (req.query?.month) {
+    let month = req.query?.month.split("-")
+    let [yy, mm] = month;
+
+    deliveredOrders = await adminHelpers.deliveredOrderList(yy, mm)
+  } else if (req.query?.daterange) {
+    deliveredOrders = await adminHelpers.deliveredOrderList(req.query);
+  } else {
+    deliveredOrders = await adminHelpers.deliveredOrderList();
+    
+  }
+
+  console.log("deliveredOrders ****************** ",deliveredOrders);
+  
+  let amount = await adminHelpers.totalAmountOfdelivered()
+  res.render('admin/sales-report', { admin: true, deliveredOrders, amount })
+
+})
+
+
+//DASHBOARD COUNT
+router.get('/dashboard',AdminMidleware.AdminFunActionCheck, (req, res) => {
+  res.render('admin/dashboard', { admin: true })
+})
+
+router.get('/dashboard/:days',AdminMidleware.AdminFunActionCheck, (req, res) => {
+  console.log("days*********************",req.params.days);
+  adminHelpers.dashboardCount(req.params.days).then((data) => {
+    console.log("data*********************",data);
+    res.json(data)
+  })
+})
+
+//OFFER MANAGEMENT
+router.get('/offer',AdminMidleware.AdminFunActionCheck , async (req, res) => {
+  let products = await productHelpers.getAllProduct()
+  let category = await adminHelpers.getCategory()
+  let productOffer = await productHelpers.getProductOffer()
+  let categoryOffer = await productHelpers.getCategoryOffer()
+  console.log("productOffer ==========",productOffer);
+  res.render('admin/offer', { admin: true, products, category, productOffer, categoryOffer })
+})
+
+//PRODUCT OFFER
+router.post('/offer/product-offer', (req, res) => {
+  console.log("offer/product-offer -----------------",req.body);
+  productHelpers.addProductOffer(req.body).then((response) => {
+    res.redirect('/admin/offer')
+    //res.json(response)
+  })
+})
+
+//DELETE PRODUCT OFFER
+router.post('/offer/delete-product-offer/:id', async (req, res) => {
+  let products = await productHelpers.getAllProduct()
+  console.log(products);
+  productHelpers.deleteProductOffer(req.params.id, products).then((response) => {
+    res.json({ status: true })
+  })
+})
+
+//CATEGORY OFFER
+router.post('/offer/category-offer', (req, res) => {
+  console.log("offer/category-offer -----------------",req.body);
+  productHelpers.addCategoryOffer(req.body).then((response) => {
+    res.redirect('/admin/offer')
+  })
+})
+
+//DELETE CATEGORY OFFER
+router.post('/offer/delete-category-offer', (req, res) => {
+  productHelpers.deleteCategoryOffer(req.body.category).then((response) => {
+    res.json({ status: true })
+  })
+})
+
+//COUPON
+router.get('/coupon',AdminMidleware.AdminFunActionCheck , async (req, res) => {
+  let coupon = await adminHelpers.getCoupon()
+  coupon.expDate = coupon.expDate?.toDateString()
+  res.render('admin/coupon', { admin: true, coupon })
+})
+
+//ADD COUPON
+router.post('/add-coupon', (req, res) => {
+  adminHelpers.addCoupon(req.body).then(() => {
+    res.json({ status: true })
+  }).catch(() => {
+    console.log('Failed');
+    res.json({ status: false })
+  })
+})
+
+//DELETE COUPON
+router.post('/delete-coupon', (req, res) => {
+  adminHelpers.deleteCoupon(req.body.coupon).then((response) => {
+    res.json({ response })
   })
 })
 

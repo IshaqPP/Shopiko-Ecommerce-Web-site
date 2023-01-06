@@ -1,0 +1,96 @@
+<main id="main" class="main">
+    <div class="pagetitle ">
+        <h1>Sales Report</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                <li class="breadcrumb-item">Sales Report</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section mt-3">
+        <div class="container">
+            <div class="div d-flex ">
+                <div class="d-flex my-auto" >
+                    <form action="/admin/sales-report" method="get">
+                        <label for="month" class="fw-bold mb-2" >Choose Month</label><br>
+                        <input id="month" name="month" type="month">
+                        <button class="btn btn-sm btn-primary ms-2 w-30" type="submit">Filter</button>
+                    </form>
+                    <form action="/admin/sales-report" method="get" class="ms-4">
+                        <label for="daterange" class="fw-bold mb-2" >Choose Date</label><br>
+                        <input type="text" name="daterange" value="01/01/2022 - 12/30/2022" />
+                        <button class=" btn btn-sm  btn-primary ms-2 w-40" type="submit">Filter Date</button>
+                    </form>
+                </div>
+
+                <div class="col-xl-4 d-flex justify-content-end pt-5 pb-3 " style="margin-left: 70px;" >
+                    <input type="button" id="rep" value="Download as Pdf" class="btn btn-primary btn_print me-4">
+                    <input type="button" onclick="export_data()" value="Export to excel"
+                        class="btn btn-primary btn_print">
+                </div>
+            </div>
+
+            <div class="card mb-4">
+
+                <div class="card-body container_content" id="container_content">
+                    <div class=" container mb-5 mt-3">
+                        <div class="row d-flex align-items-baseline">
+                            <div class="col-xl-9">
+                                <p style="color:rgb(63, 61, 61);font-size: 30px;"><strong>
+                                        Shopiko Sales Report
+                                    </strong>
+                                </p>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="container">
+                            <div class="row my-2 mx-1 justify-content-center">
+                                <table class="table table-striped table-borderless">
+                                    <thead style="background-color:#097dc1 ;" class="text-white">
+                                        <tr>
+                                            <th scope="col" class="pe-4">Order Id</th>
+                                            <th scope="col" class="pe-4">Date</th>
+                                            <th scope="col" class="">PaymentMethod</th>
+                                            <th scope=" col">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each deliveredOrders}}
+                                        <tr>
+                                            <td class="pe-4">{{this._id}}</td>
+                                            <td class="pe-4">{{this.statusUpdateDate}}</td>
+                                            <td class="pe-4 text-center">{{this.paymentMethod}}</td>
+                                            <td class="pe-4 text-center">₹ {{this.totalAmount}}</td>
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                                {{!-- <div class="d-flex justify-content-end">
+                                    {{#if deliveredOrders}}
+                                    <h4> Total: ₹ {{amount}}</h4>
+                                    {{else}}
+                                    <p></p>
+                                    {{/if}}
+                                </div> --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <script>
+                $(function () {
+                    $('input[name="daterange"]').daterangepicker({
+                        opens: 'left'
+                    }, function (start, end, label) {
+                        console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+                    });
+                });
+            </script>
+        </div>
+    </section>
+
+</main><!-- End #main -->

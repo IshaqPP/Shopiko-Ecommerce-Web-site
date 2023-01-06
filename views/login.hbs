@@ -73,7 +73,8 @@
         data: $('#login-form').serialize(),
         success: (response) => {
             if (response.status) {
-                location.href="/";
+                location.href=response.url;
+                
             } else {
                 
                 if(response.msg=="Password is incorrect"){

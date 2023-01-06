@@ -68,7 +68,7 @@
                             </li>
 
                             <li>
-                                <a href="product.html">Shop</a>
+                                <a href="/product">Shop</a>
                             </li>
 
                             {{!-- <li class="label1" data-label1="hot">
@@ -94,35 +94,52 @@
                                 {{/if}}
                             </li>
                             <li>
-                                <a href="about.hbs">About</a>
+                                <a href="#">About</a>
                             </li>
 
                             <li>
-                                <a href="contact.html">Contact</a>
+                                <a href="#">Contact</a>
                             </li>
                         </ul>
                     </div>
 
                     <!-- Icon header -->
                     <div class="wrap-icon-header flex-w flex-r-m">
-                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+                        {{!-- <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
                             <i class="zmdi zmdi-search"></i>
-                        </div>
+                        </div> --}}
 
                         {{!-- <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti ">
                             <i class="zmdi zmdi-shopping-cart"></i>
                         </div> --}}
+                        {{#if cartCount}}
 
                         <a href="/cart" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti "
                             data-notify={{cartCount}} id="cart-count">
                             <i class="zmdi zmdi-shopping-cart"></i>
                         </a>
+                        {{else}}
+                        <a href="/cart" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti "
+                            data-notify=0 id="cart-count">
+                            <i class="zmdi zmdi-shopping-cart"></i>
+                        </a>
+                        {{/if}}
 
-                        <a href="#"
+                        {{#if wishCount}}
+
+                        <a href="/wishlist"
                             class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
-                            data-notify="0">
+                            data-notify={{wishCount}} id="wish-count">
                             <i class="zmdi zmdi-favorite-outline"></i>
                         </a>
+                        {{else}}
+                        <a href="/wishlist"
+                            class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
+                            data-notify=0 id="wish-count">
+                            <i class="zmdi zmdi-favorite-outline"></i>
+                        </a>
+                        {{/if}}
+
 
 
 
@@ -233,7 +250,7 @@
 
 
 
-    
+
 
 
     <!-- Back to top -->
@@ -243,7 +260,7 @@
         </span>
     </div>
 
-    
+
 
     <!--===============================================================================================-->
     <script src="/user/vendor/jquery/jquery-3.2.1.min.js"></script>

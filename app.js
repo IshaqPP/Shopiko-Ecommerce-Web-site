@@ -42,11 +42,17 @@ Handlebars.registerHelper ('multiply', function(a, b) {
   return Number(a) * Number(b);
 });
 
-Handlebars.registerHelper ('Add', function(a, b,c,d) {
-  
-  return Number(a) + Number(b) + Number(c) + Number(d);
+Handlebars.registerHelper ('Add', function(a, b,c) {
+  return (a >= 10000) ? Number(a) - Number(b) + Number(c) : Number(a) - Number(b) + Number(c) + 50 ;
 });
 
+Handlebars.registerHelper('Compare', function (total, limit) {
+  return (total >= limit) ? Number(0) : Number(50);
+})
+
+Handlebars.registerHelper ('SumPackDelivery', function(a, b) {
+  return (a >= 10000) ?  Number(b)  :  Number(b) + 50 ;
+});
 
 app.use(logger('dev'));
 app.use(express.json());

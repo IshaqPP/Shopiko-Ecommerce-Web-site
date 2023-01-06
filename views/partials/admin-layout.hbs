@@ -45,19 +45,19 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="/admin" class="logo d-flex align-items-center">
         <img src="/Admin/img/logo.png" alt="">
-        <span class="d-none d-lg-block">Nice/Admin</span>
+        <span class="d-none d-lg-block">Shopiko Admin</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-    <div class="search-bar">
+    {{!-- <div class="search-bar">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
         <input type="text" name="query" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
       </form>
-    </div><!-- End Search Bar -->
+    </div><!-- End Search Bar --> --}}
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
@@ -276,7 +276,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="#">
+        <a class="nav-link " href="/admin/dashboard">
           <i class="bi bi-speedometer"></i>
           <span>Dashboard</span>
         </a>
@@ -312,19 +312,19 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="/admin/coupon">
           <i class="bi bi-card-text"></i>
           <span>Coupons</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="/admin/offer">
           <i class="bi bi-gift"></i>
           <span>Offers</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="/admin/sales-report">
           <i class="bi bi-graph-up-arrow"></i>
           <span>Sales Report</span>
         </a>

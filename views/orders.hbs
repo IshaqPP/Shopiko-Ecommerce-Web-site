@@ -1,7 +1,3 @@
-
-
-
-
 <div>
     <!-- breadcrumb -->
     <div class="container ">
@@ -37,32 +33,44 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-1">
-                                            <img style="width:100px; height:104px;" src="{{this.product.image.[0]}}"
+                                            <img style="width:104px; height:90px;" src="{{this.product.image.[0]}}"
                                                 class="img-fluid" alt="Phone">
                                         </div>
                                         <div
                                             class="col-md-2 text-center d-flex justify-content-center align-items-center">
 
-                                            <h5 class="text mb-0">{{this.product.Product-Name}}</h5>
+                                            <p class="text mb-0 fs-5">{{this.product.Product-Name}}</p>
                                         </div>
                                         <div
                                             class="col-md-1 text-center d-flex justify-content-center align-items-center">
-                                            <p class="text mb-0 small"><b>Brand: <br> {{this.product.Brand}}</b></p>
+                                            <p class="text mb-0 fs-6 fw-bold">Brand: <br> {{this.product.Brand}}</p>
                                         </div>
                                         <div
                                             class="col-md-1 text-center d-flex justify-content-center align-items-center">
-                                            <p class="text mb-0 small"><b>Quantity: <br>{{this.quantity}}</b></p>
+                                            <p class="text mb-0 fs-6 fw-bold">Quantity: <br>{{this.quantity}}</p>
                                         </div>
 
 
                                         <div
                                             class="col-md-1 text-center d-flex justify-content-center align-items-center">
-                                            <p class="text mb-0 small"><b>Amount: <br>{{this.product.Price}}</b></p>
+                                            <p class="text mb-0 fs-6 fw-bold">Amount: <br>{{this.product.offerPrice}}
+                                            </p>
                                         </div>
-                                        <div class="col-md-3 d-flex justify-content-center align-items-center">
+                                        <div
+                                            class="col-md-1 text-center d-flex justify-content-center align-items-center">
+                                            {{!-- <p class="text mb-0 fs-6 fw-bold">Total: <br>{{#multiply
+                                                this.product.offerPrice this.quantity}}
+                                                {{/multiply}}</p> --}}
+                                            <p class="text mb-0 fs-6 fw-bold">Total: <br>
+                                                {{this.totalAmount}}</p>
+                                        </div>
+                                        <div class="col-md-2 d-flex justify-content-center align-items-center">
                                             <div class="col-md-12">
                                                 <p>{{this.deliveryDetails.fullname}}</p>
                                                 <p>{{this.deliveryDetails.address}}</p>
+                                                <p>{{this.deliveryDetails.city}}</p>
+                                                <p>{{this.deliveryDetails.district}}</p>
+                                                <p>{{this.deliveryDetails.pincode}}</p>
                                             </div>
                                         </div>
                                         <div class="col-md-1 justify-content-center align-items-center">
@@ -119,11 +127,6 @@
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
     </section>
 </div>
-    
-
-
-
-    
