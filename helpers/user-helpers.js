@@ -332,6 +332,11 @@ module.exports = {
         })
     },
 
+    //DELETE PENDING ORDERS
+    deletePendingOrders: () => {
+        db.get().collection(collection.ORDERS_COLLECTION).deleteMany({ 'products.status': 'pending' })
+    },
+
     //USER ORDERS
     getUserOrders: (userId) => {
         return new Promise((resolve, reject) => {

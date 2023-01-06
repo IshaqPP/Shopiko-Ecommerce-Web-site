@@ -385,7 +385,7 @@ router.get('/success', async (req, res) => {
 
 //ORDERS
 router.get('/orders',redirect, middleware.userChecked, async (req, res) => {
-
+  userHelpers.deletePendingOrders()
   let orders = await userHelpers.getUserOrders(req.session.user._id)
   let cartCount = await userHelpers.getCartCount(req.session.user._id)
   let wishCount = await userHelpers.getWishCount(req.session.user._id)
