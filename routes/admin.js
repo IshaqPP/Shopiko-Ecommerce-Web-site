@@ -259,7 +259,7 @@ router.get('/sales-report',AdminMidleware.AdminFunActionCheck , async (req, res)
 
 //DASHBOARD COUNT
 router.get('/dashboard',AdminMidleware.AdminFunActionCheck, (req, res) => {
-  res.render('admin/dashboard', { admin: true })
+  res.render('Admin/dashboard', { admin: true })
 })
 
 router.get('/dashboard/:days',AdminMidleware.AdminFunActionCheck, (req, res) => {
